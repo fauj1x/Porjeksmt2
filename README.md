@@ -1,5 +1,6 @@
 ﻿# Porjeksmt2
-anjas kelas
+setiap ada pengerjaan / revisi wajib mengupload file database terbaru
+
 
 
 
