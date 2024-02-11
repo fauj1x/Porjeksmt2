@@ -44,7 +44,7 @@ public class dashboard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(410, 410, 410)
+                .addGap(344, 344, 344)
                 .addComponent(jLabel1))
         );
         layout.setVerticalGroup(

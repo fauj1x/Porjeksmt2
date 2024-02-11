@@ -11,7 +11,7 @@ public class koneksi {
                         public static Connection GetConnection(){
                                     
                                     try {
-                                        String url = "jdbc:mysql://localhost:3306/rohingya";
+                                        String url = "jdbc:mysql://localhost:3306/manajemenprod";
                                         String user = "root";
                                         String password = "";
 
