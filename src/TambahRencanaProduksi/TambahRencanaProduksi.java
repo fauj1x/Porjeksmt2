@@ -53,9 +53,9 @@ public class TambahRencanaProduksi extends javax.swing.JFrame {
         nama_karyawan = new javax.swing.JComboBox<>();
         btn_simpan = new javax.swing.JButton();
         btn_hps = new javax.swing.JButton();
-        tanggal_selesai = new com.github.lgooddatepicker.components.DatePicker();
-        tanggal_mulai = new com.github.lgooddatepicker.components.DatePicker();
         jLabel8 = new javax.swing.JLabel();
+        tanggalselesai = new com.github.lgooddatepicker.components.DatePicker();
+        tanggalmulai = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,11 +105,11 @@ public class TambahRencanaProduksi extends javax.swing.JFrame {
 
         btn_hps.setText("kosongkan form");
         getContentPane().add(btn_hps, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, -1, -1));
-        getContentPane().add(tanggal_selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
-        getContentPane().add(tanggal_mulai, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
 
         jLabel8.setText("Nama Produksi");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+        getContentPane().add(tanggalselesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
+        getContentPane().add(tanggalmulai, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,8 +121,8 @@ public class TambahRencanaProduksi extends javax.swing.JFrame {
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
 String nama = nama_prod.getText();
 String penanggung = penanggung_jawab.getText();
-String mulai =tanggal_mulai.getDateStringOrEmptyString();
-String selesai =tanggal_selesai.getDateStringOrEmptyString();
+String mulai =tanggalmulai.getDateStringOrEmptyString();
+String selesai =tanggalselesai.getDateStringOrEmptyString();
 String jlmhkaryawan = jumlah_karyawan.getText();
 String nama_kar = nama_karyawan.getSelectedItem().toString();
 
@@ -197,8 +197,8 @@ String nama_kar = nama_karyawan.getSelectedItem().toString();
     private javax.swing.JComboBox<String> nama_karyawan;
     private javax.swing.JTextField nama_prod;
     private javax.swing.JTextField penanggung_jawab;
-    private com.github.lgooddatepicker.components.DatePicker tanggal_mulai;
-    private com.github.lgooddatepicker.components.DatePicker tanggal_selesai;
+    private com.github.lgooddatepicker.components.DatePicker tanggalmulai;
+    private com.github.lgooddatepicker.components.DatePicker tanggalselesai;
     private javax.swing.JTextField terget_produksi;
     // End of variables declaration//GEN-END:variables
 }
