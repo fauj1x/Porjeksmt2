@@ -26,46 +26,21 @@ public class StokGudang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton8 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        srp = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        sgudang = new javax.swing.JButton();
+        skaryawan = new javax.swing.JButton();
+        qcheck = new javax.swing.JButton();
+        bdashboard = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        brp = new javax.swing.JButton();
+        tbrang = new javax.swing.JButton();
+        tkaryawan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton8.setText("Quality Check");
-
-        jButton1.setText("Dashboard");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Edit / Update Data");
-
-        jButton2.setText("Buat Rencana Produksi");
-
-        jButton3.setText("Tambah Barang");
-
-        jButton4.setText("Tambah Karyawan");
-
-        jButton5.setText("Seluruh Riwayat Produksi");
-
-        jLabel2.setText("Master Data");
-
-        jButton6.setText("Stok Gudang");
-
-        jButton7.setText("Seluruh Karyawan");
 
         jLabel3.setText("STOK GUDANG");
 
@@ -82,69 +57,175 @@ public class StokGudang extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        srp.setText("Seluruh Riwayat Produksi");
+        srp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                srpMouseClicked(evt);
+            }
+        });
+
+        jLabel4.setText("Master Data");
+
+        sgudang.setText("Stok Gudang");
+        sgudang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sgudangMouseClicked(evt);
+            }
+        });
+
+        skaryawan.setText("Seluruh Karyawan");
+        skaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                skaryawanMouseClicked(evt);
+            }
+        });
+
+        qcheck.setText("Quality Check");
+        qcheck.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                qcheckMouseClicked(evt);
+            }
+        });
+
+        bdashboard.setText("Dashboard");
+        bdashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bdashboardMouseClicked(evt);
+            }
+        });
+        bdashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bdashboardActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Edit / Update Data");
+
+        brp.setText("Buat Rencana Produksi");
+        brp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                brpMouseClicked(evt);
+            }
+        });
+
+        tbrang.setText("Tambah Barang");
+
+        tkaryawan.setText("Tambah Karyawan");
+        tkaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tkaryawanMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton8)
-                    .addComponent(jButton7)
-                    .addComponent(jButton6)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton5))
-                .addGap(25, 25, 25)
+                    .addComponent(skaryawan)
+                    .addComponent(sgudang)
+                    .addComponent(bdashboard)
+                    .addComponent(jLabel5)
+                    .addComponent(brp)
+                    .addComponent(tbrang)
+                    .addComponent(tkaryawan)
+                    .addComponent(jLabel4)
+                    .addComponent(srp)
+                    .addComponent(qcheck))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel3)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(bdashboard)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(brp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addComponent(tbrang)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(tkaryawan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6)
+                        .addComponent(srp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7)
+                        .addComponent(sgudang)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(skaryawan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(qcheck))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void srpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_srpMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        SeluruhRiwayatProduksi.SeluruhRiwayatProduksi a = new SeluruhRiwayatProduksi.SeluruhRiwayatProduksi();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_srpMouseClicked
+
+    private void sgudangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sgudangMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_sgudangMouseClicked
+
+    private void skaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_skaryawanMouseClicked
+        // TODO add your handling code here:
+        DataSeluruhKaryawan.DataSeluruhKaryawan a = new DataSeluruhKaryawan.DataSeluruhKaryawan();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_skaryawanMouseClicked
+
+    private void qcheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_qcheckMouseClicked
+        // TODO add your handling code here:
+        QualityCheck.QualityCheck a = new QualityCheck.QualityCheck();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_qcheckMouseClicked
+
+    private void bdashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bdashboardMouseClicked
+        // TODO add your handling code here:
+        dashboard.dashboard a = new dashboard.dashboard();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bdashboardMouseClicked
+
+    private void bdashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bdashboardActionPerformed
+        // TODO add your handling code here:
+        dashboard.dashboard a = new dashboard.dashboard();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bdashboardActionPerformed
+
+    private void brpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_brpMouseClicked
+        // TODO add your handling code here:
+        TambahRencanaProduksi.TambahRencanaProduksi a = new TambahRencanaProduksi.TambahRencanaProduksi();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_brpMouseClicked
+
+    private void tkaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tkaryawanMouseClicked
+        // TODO add your handling code here:
+        TambahKaryawan.TambahKaryawan a = new TambahKaryawan.TambahKaryawan();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_tkaryawanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -182,18 +263,18 @@ public class StokGudang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton bdashboard;
+    private javax.swing.JButton brp;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton qcheck;
+    private javax.swing.JButton sgudang;
+    private javax.swing.JButton skaryawan;
+    private javax.swing.JButton srp;
+    private javax.swing.JButton tbrang;
+    private javax.swing.JButton tkaryawan;
     // End of variables declaration//GEN-END:variables
 }

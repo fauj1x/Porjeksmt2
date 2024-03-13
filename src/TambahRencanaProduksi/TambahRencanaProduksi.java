@@ -56,6 +56,16 @@ public class TambahRencanaProduksi extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         tanggalselesai = new com.github.lgooddatepicker.components.DatePicker();
         tanggalmulai = new com.github.lgooddatepicker.components.DatePicker();
+        srp = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        sgudang = new javax.swing.JButton();
+        skaryawan = new javax.swing.JButton();
+        qcheck = new javax.swing.JButton();
+        bdashboard = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        brp = new javax.swing.JButton();
+        tbrang = new javax.swing.JButton();
+        tkaryawan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,35 +75,35 @@ public class TambahRencanaProduksi extends javax.swing.JFrame {
                 nama_prodActionPerformed(evt);
             }
         });
-        getContentPane().add(nama_prod, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 110, -1));
-        getContentPane().add(penanggung_jawab, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 110, -1));
-        getContentPane().add(terget_produksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 110, -1));
-        getContentPane().add(anggaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 110, -1));
-        getContentPane().add(jumlah_karyawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 110, -1));
+        getContentPane().add(nama_prod, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 110, -1));
+        getContentPane().add(penanggung_jawab, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 110, -1));
+        getContentPane().add(terget_produksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 110, -1));
+        getContentPane().add(anggaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 110, -1));
+        getContentPane().add(jumlah_karyawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 110, -1));
 
         jLabel1.setText("pilih namakaryawan");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, -1, -1));
 
         jLabel2.setText("jumlah karyawan");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, -1, -1));
 
         jLabel3.setText("Penanggung jawab");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
 
         jLabel4.setText("tanggal mulai");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, -1));
 
         jLabel5.setText("tanggal selesai");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
 
         jLabel6.setText("target produksi");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
 
         jLabel7.setText("anggaran");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, -1, -1));
 
         nama_karyawan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(nama_karyawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, -1));
+        getContentPane().add(nama_karyawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, -1));
 
         btn_simpan.setText("simpan");
         btn_simpan.addActionListener(new java.awt.event.ActionListener() {
@@ -101,15 +111,85 @@ public class TambahRencanaProduksi extends javax.swing.JFrame {
                 btn_simpanActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
+        getContentPane().add(btn_simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, -1, -1));
 
         btn_hps.setText("kosongkan form");
-        getContentPane().add(btn_hps, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, -1, -1));
+        getContentPane().add(btn_hps, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, -1, -1));
 
         jLabel8.setText("Nama Produksi");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
-        getContentPane().add(tanggalselesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
-        getContentPane().add(tanggalmulai, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
+        getContentPane().add(tanggalselesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, -1, -1));
+        getContentPane().add(tanggalmulai, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, -1, -1));
+
+        srp.setText("Seluruh Riwayat Produksi");
+        srp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                srpMouseClicked(evt);
+            }
+        });
+        getContentPane().add(srp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
+
+        jLabel9.setText("Master Data");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+
+        sgudang.setText("Stok Gudang");
+        sgudang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sgudangMouseClicked(evt);
+            }
+        });
+        getContentPane().add(sgudang, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
+
+        skaryawan.setText("Seluruh Karyawan");
+        skaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                skaryawanMouseClicked(evt);
+            }
+        });
+        getContentPane().add(skaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+
+        qcheck.setText("Quality Check");
+        qcheck.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                qcheckMouseClicked(evt);
+            }
+        });
+        getContentPane().add(qcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, -1));
+
+        bdashboard.setText("Dashboard");
+        bdashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bdashboardMouseClicked(evt);
+            }
+        });
+        bdashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bdashboardActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bdashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+
+        jLabel10.setText("Edit / Update Data");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+
+        brp.setText("Buat Rencana Produksi");
+        brp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                brpMouseClicked(evt);
+            }
+        });
+        getContentPane().add(brp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        tbrang.setText("Tambah Barang");
+        getContentPane().add(tbrang, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+
+        tkaryawan.setText("Tambah Karyawan");
+        tkaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tkaryawanMouseClicked(evt);
+            }
+        });
+        getContentPane().add(tkaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,6 +225,59 @@ String nama_kar = nama_karyawan.getSelectedItem().toString();
         }
 
     }//GEN-LAST:event_btn_simpanActionPerformed
+
+    private void srpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_srpMouseClicked
+        // TODO add your handling code here:
+        SeluruhRiwayatProduksi.SeluruhRiwayatProduksi a = new SeluruhRiwayatProduksi.SeluruhRiwayatProduksi();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_srpMouseClicked
+
+    private void sgudangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sgudangMouseClicked
+        // TODO add your handling code here:
+        StokGudang.StokGudang a = new StokGudang.StokGudang();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_sgudangMouseClicked
+
+    private void skaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_skaryawanMouseClicked
+        // TODO add your handling code here:
+        DataSeluruhKaryawan.DataSeluruhKaryawan a = new DataSeluruhKaryawan.DataSeluruhKaryawan();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_skaryawanMouseClicked
+
+    private void qcheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_qcheckMouseClicked
+        // TODO add your handling code here:
+        QualityCheck.QualityCheck a = new QualityCheck.QualityCheck();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_qcheckMouseClicked
+
+    private void bdashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bdashboardMouseClicked
+        // TODO add your handling code here:
+        dashboard.dashboard a = new dashboard.dashboard();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bdashboardMouseClicked
+
+    private void bdashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bdashboardActionPerformed
+        // TODO add your handling code here:
+        dashboard.dashboard a = new dashboard.dashboard();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bdashboardActionPerformed
+
+    private void brpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_brpMouseClicked
+     
+    }//GEN-LAST:event_brpMouseClicked
+
+    private void tkaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tkaryawanMouseClicked
+        // TODO add your handling code here:
+        TambahKaryawan.TambahKaryawan a = new TambahKaryawan.TambahKaryawan();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_tkaryawanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -183,9 +316,12 @@ String nama_kar = nama_karyawan.getSelectedItem().toString();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField anggaran;
+    private javax.swing.JButton bdashboard;
+    private javax.swing.JButton brp;
     private javax.swing.JButton btn_hps;
     private javax.swing.JButton btn_simpan;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -193,12 +329,19 @@ String nama_kar = nama_karyawan.getSelectedItem().toString();
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jumlah_karyawan;
     private javax.swing.JComboBox<String> nama_karyawan;
     private javax.swing.JTextField nama_prod;
     private javax.swing.JTextField penanggung_jawab;
+    private javax.swing.JButton qcheck;
+    private javax.swing.JButton sgudang;
+    private javax.swing.JButton skaryawan;
+    private javax.swing.JButton srp;
     private com.github.lgooddatepicker.components.DatePicker tanggalmulai;
     private com.github.lgooddatepicker.components.DatePicker tanggalselesai;
+    private javax.swing.JButton tbrang;
     private javax.swing.JTextField terget_produksi;
+    private javax.swing.JButton tkaryawan;
     // End of variables declaration//GEN-END:variables
 }
