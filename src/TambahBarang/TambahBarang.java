@@ -4,6 +4,7 @@
  */
 package TambahBarang;
 import java.sql.*;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,7 +16,6 @@ public class TambahBarang extends javax.swing.JFrame {
 
     public TambahBarang() {
         initComponents();
-
     }
      public static String generateNewID() {
       String newID = "PD0000";
@@ -69,13 +69,13 @@ public class TambahBarang extends javax.swing.JFrame {
         skaryawan = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtnamabarang = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtkategori = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        txtjumlah = new javax.swing.JButton();
         bsimpan = new javax.swing.JButton();
         kform = new javax.swing.JButton();
+        txtnamabarang = new javax.swing.JTextField();
+        txtjumlah = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,7 +145,7 @@ public class TambahBarang extends javax.swing.JFrame {
 
         jLabel5.setText("Kategori");
 
-        txtkategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtkategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barang Mentah", "Barang Jadi", "Barang Riject", " " }));
         txtkategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtkategoriActionPerformed(evt);
@@ -162,6 +162,11 @@ public class TambahBarang extends javax.swing.JFrame {
         });
 
         kform.setText("Kosongkan Form");
+        kform.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kformActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,19 +187,23 @@ public class TambahBarang extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(srp)
                             .addComponent(qcheck))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(txtnamabarang, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(bsimpan)
-                                .addGap(60, 60, 60)
-                                .addComponent(kform, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(txtnamabarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtkategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtjumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(bsimpan)
+                                        .addGap(60, 60, 60)
+                                        .addComponent(kform, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtkategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtjumlah))))))
                 .addContainerGap(263, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -211,7 +220,7 @@ public class TambahBarang extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(brp)
-                    .addComponent(txtnamabarang, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnamabarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbrang)
@@ -227,7 +236,7 @@ public class TambahBarang extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(srp)
-                    .addComponent(txtjumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtjumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sgudang)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -305,25 +314,34 @@ public class TambahBarang extends javax.swing.JFrame {
 
     private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
         // TODO add your handling code here:
-        String namabarang = txtnamabarang.getText();
-        int kategori = txtkategori.getSelectedIndex();
-        String jumlah = txtjumlah.getText();
+        String id_barang = generateNewID();
+    String namabarang = txtnamabarang.getText();
+    String kategori = txtkategori.getSelectedItem().toString().split(". ")[0];
+    String jumlah = txtjumlah.getText();
 
-        try{
-            Statement statement = koneksi.koneksi.GetConnection().createStatement();
-            String query = "UPDATE barang SET " 
-                + "nama = '" +namabarang+ "',"
-                + "id_kategori = '" +kategori+ "',"
-                + "jumlah = '" +jumlah+ "',"
-                + "id_kategori = '" +kategori+ "',"
-                + "WHERE nama = '" +namabarang+ "'";
-            statement.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Perubahan berhasil disimpan");
-            reset();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "gagal menambah data"+e);
-        }
+    try {
+        Connection connection = koneksi.koneksi.GetConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO barang(id_barang, nama_barang, jumlah, kategori) VALUES (?, ?, ?, ?)");
+        preparedStatement.setString(1, id_barang);
+        preparedStatement.setString(2, namabarang);
+        preparedStatement.setString(3, jumlah);
+        preparedStatement.setString(4, kategori);
+
+        preparedStatement.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "Data barang berhasil disimpan.");
+        reset();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+    }
     }//GEN-LAST:event_bsimpanActionPerformed
+
+    private void kformActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kformActionPerformed
+        // TODO add your handling code here:
+        txtnamabarang.setText("");
+        txtkategori.setSelectedIndex(0);
+        txtjumlah.setText("");
+    }//GEN-LAST:event_kformActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,9 +402,9 @@ public class TambahBarang extends javax.swing.JFrame {
     private javax.swing.JButton srp;
     private javax.swing.JButton tbrang;
     private javax.swing.JButton tkaryawan;
-    private javax.swing.JButton txtjumlah;
+    private javax.swing.JTextField txtjumlah;
     private javax.swing.JComboBox<String> txtkategori;
-    private javax.swing.JButton txtnamabarang;
+    private javax.swing.JTextField txtnamabarang;
     // End of variables declaration//GEN-END:variables
 
 

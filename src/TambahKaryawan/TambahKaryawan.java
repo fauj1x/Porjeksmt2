@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package TambahKaryawan;
+import static TambahBarang.TambahBarang.generateNewID;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,7 +20,38 @@ public class TambahKaryawan extends javax.swing.JFrame {
     public TambahKaryawan() {
         initComponents();
     }
+     public static String generateNewID() {
+      String newID = "K0000";
 
+        try (Connection connection = koneksi.koneksi.GetConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id_karyawan) FROM karyawan");
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                String lastID = resultSet.getString("MAX(id_karyawan)");
+                if (lastID != null) {
+                    try {
+                        int sequence = Integer.parseInt(lastID.replaceAll("\\D", "")) + 1;
+                        newID = String.format("K%04d", sequence);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Error parsing ID: " + e.getMessage());
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error generating ID: " + e.getMessage());
+        }
+
+        return newID;
+    }
+     
+    void reset() {
+        txtnama.setText("");
+        txtumur.setText("");
+        txtalamat.setText("");
+        txtjabatan.setText("");
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,15 +63,11 @@ public class TambahKaryawan extends javax.swing.JFrame {
 
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        bsimpan = new javax.swing.JButton();
+        bksongkan = new javax.swing.JButton();
         srp = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         sgudang = new javax.swing.JButton();
@@ -47,6 +78,10 @@ public class TambahKaryawan extends javax.swing.JFrame {
         brp = new javax.swing.JButton();
         tbrang = new javax.swing.JButton();
         tkaryawan = new javax.swing.JButton();
+        txtnama = new javax.swing.JTextField();
+        txtumur = new javax.swing.JTextField();
+        txtalamat = new javax.swing.JTextField();
+        txtjabatan = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,9 +95,19 @@ public class TambahKaryawan extends javax.swing.JFrame {
 
         jLabel7.setText("Jabatan");
 
-        jButton13.setText("Simpan");
+        bsimpan.setText("Simpan");
+        bsimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bsimpanActionPerformed(evt);
+            }
+        });
 
-        jButton14.setText("Kosongkan Form");
+        bksongkan.setText("Kosongkan Form");
+        bksongkan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bksongkanActionPerformed(evt);
+            }
+        });
 
         srp.setText("Seluruh Riwayat Produksi");
         srp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,6 +161,11 @@ public class TambahKaryawan extends javax.swing.JFrame {
         });
 
         tbrang.setText("Tambah Barang");
+        tbrang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbrangMouseClicked(evt);
+            }
+        });
 
         tkaryawan.setText("Tambah Karyawan");
         tkaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,22 +194,20 @@ public class TambahKaryawan extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton13)
+                        .addComponent(bsimpan)
                         .addGap(45, 45, 45)
-                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(256, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(bksongkan, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtumur, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtjabatan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                        .addComponent(txtalamat, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtnama, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,20 +218,21 @@ public class TambahKaryawan extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
-                        .addGap(19, 19, 19)
-                        .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtumur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtalamat, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtjabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bdashboard)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -204,11 +253,10 @@ public class TambahKaryawan extends javax.swing.JFrame {
                         .addComponent(skaryawan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(qcheck)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton13)
-                    .addComponent(jButton14))
+                    .addComponent(bsimpan)
+                    .addComponent(bksongkan))
                 .addGap(270, 270, 270))
         );
 
@@ -231,9 +279,6 @@ public class TambahKaryawan extends javax.swing.JFrame {
 
     private void skaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_skaryawanMouseClicked
         // TODO add your handling code here:
-        DataSeluruhKaryawan.DataSeluruhKaryawan a = new DataSeluruhKaryawan.DataSeluruhKaryawan();
-        a.setVisible(true);
-        dispose();
     }//GEN-LAST:event_skaryawanMouseClicked
 
     private void qcheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_qcheckMouseClicked
@@ -252,9 +297,6 @@ public class TambahKaryawan extends javax.swing.JFrame {
 
     private void bdashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bdashboardActionPerformed
         // TODO add your handling code here:
-        dashboard.dashboard a = new dashboard.dashboard();
-        a.setVisible(true);
-        dispose();
     }//GEN-LAST:event_bdashboardActionPerformed
 
     private void brpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_brpMouseClicked
@@ -266,8 +308,50 @@ public class TambahKaryawan extends javax.swing.JFrame {
 
     private void tkaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tkaryawanMouseClicked
         // TODO add your handling code here:
+        TambahBarang.TambahBarang a = new TambahBarang.TambahBarang();
+        a.setVisible(true);
+        dispose();
       
     }//GEN-LAST:event_tkaryawanMouseClicked
+
+    private void tbrangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbrangMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tbrangMouseClicked
+
+    private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
+        // TODO add your handling code here:
+        String id_karyawan = generateNewID();
+        String namakaryawan = txtnama.getText();
+        String umur = txtumur.getText();
+        String alamat_karyawan = txtalamat.getText();
+        String jabatan = txtjabatan.getText();
+
+    try {
+        Connection connection = koneksi.koneksi.GetConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO karyawan(id_karyawan, nama_karyawan, umur, alamat_karyawan, jabatan) VALUES (?, ?, ?, ?, ?)");
+        preparedStatement.setString(1, id_karyawan);
+        preparedStatement.setString(2, namakaryawan);
+        preparedStatement.setString(3, umur);
+        preparedStatement.setString(4, alamat_karyawan);
+        preparedStatement.setString(5, jabatan);
+
+        preparedStatement.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "Data karyawan berhasil disimpan.");
+        reset();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+    }
+    }//GEN-LAST:event_bsimpanActionPerformed
+
+    private void bksongkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bksongkanActionPerformed
+        // TODO add your handling code here:
+        txtnama.setText("");
+        txtumur.setText("");
+        txtalamat.setText("");
+        txtjabatan.setText("");
+    }//GEN-LAST:event_bksongkanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,13 +390,9 @@ public class TambahKaryawan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bdashboard;
+    private javax.swing.JButton bksongkan;
     private javax.swing.JButton brp;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton bsimpan;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -326,5 +406,9 @@ public class TambahKaryawan extends javax.swing.JFrame {
     private javax.swing.JButton srp;
     private javax.swing.JButton tbrang;
     private javax.swing.JButton tkaryawan;
+    private javax.swing.JTextField txtalamat;
+    private javax.swing.JTextField txtjabatan;
+    private javax.swing.JTextField txtnama;
+    private javax.swing.JTextField txtumur;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,8 +37,6 @@ public class dashboard extends javax.swing.JFrame {
         brp = new javax.swing.JButton();
         tbrang = new javax.swing.JButton();
         tkaryawan = new javax.swing.JButton();
-        panelGradient1 = new raven.panel.PanelGradient();
-        curveLineChart1 = new chart.CurveLineChart();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1440, 1024));
@@ -108,9 +106,6 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
 
-        panelGradient1.add(curveLineChart1);
-        curveLineChart1.setBounds(0, 0, 30, 330);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,36 +123,31 @@ public class dashboard extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(brp)
                     .addComponent(tbrang))
-                .addGap(40, 40, 40)
-                .addComponent(panelGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(587, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panelGradient1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(bdashboard)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel9)
-                        .addGap(12, 12, 12)
-                        .addComponent(brp)
-                        .addGap(12, 12, 12)
-                        .addComponent(tbrang)
-                        .addGap(12, 12, 12)
-                        .addComponent(tkaryawan)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel8)
-                        .addGap(12, 12, 12)
-                        .addComponent(srp)
-                        .addGap(12, 12, 12)
-                        .addComponent(sgudang)
-                        .addGap(12, 12, 12)
-                        .addComponent(skaryawan)
-                        .addGap(12, 12, 12)
-                        .addComponent(qcheck)))
+                .addComponent(bdashboard)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel9)
+                .addGap(12, 12, 12)
+                .addComponent(brp)
+                .addGap(12, 12, 12)
+                .addComponent(tbrang)
+                .addGap(12, 12, 12)
+                .addComponent(tkaryawan)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel8)
+                .addGap(12, 12, 12)
+                .addComponent(srp)
+                .addGap(12, 12, 12)
+                .addComponent(sgudang)
+                .addGap(12, 12, 12)
+                .addComponent(skaryawan)
+                .addGap(12, 12, 12)
+                .addComponent(qcheck)
                 .addContainerGap(224, Short.MAX_VALUE))
         );
 
@@ -258,10 +248,8 @@ public class dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bdashboard;
     private javax.swing.JButton brp;
-    private chart.CurveLineChart curveLineChart1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private raven.panel.PanelGradient panelGradient1;
     private javax.swing.JButton qcheck;
     private javax.swing.JButton sgudang;
     private javax.swing.JButton skaryawan;
