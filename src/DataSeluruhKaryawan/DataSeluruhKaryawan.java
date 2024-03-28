@@ -3,20 +3,77 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package DataSeluruhKaryawan;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Faujixx
  */
 public class DataSeluruhKaryawan extends javax.swing.JFrame {
-
-    /**
-     * Creates new form DataSeluruhKaryawan
-     */
-    public DataSeluruhKaryawan() {
+   public DataSeluruhKaryawan () {
         initComponents();
+        datable();
+        //setModel(model);
     }
+    void datable() {
+    DefaultTableModel model = new DefaultTableModel();
+    model.addColumn("nama produksi");
+    model.addColumn("penanggung jawab");
+    model.addColumn("tanggal mulai");
+    model.addColumn("tanggal selesai");
+    model.addColumn("jumlah karyawan");
+    model.addColumn("nama karyawan");
 
+    try (Connection connection = koneksi.koneksi.GetConnection();
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery("SELECT * FROM produksi")) {
+
+        while (resultSet.next()) {
+            String namaproduksi = resultSet.getString("nama_produksi");
+            String penanggungjawab = resultSet.getString("penanggung_jawab");
+            String tanggalmulai = resultSet.getString("tgl_mul");
+            String tanggalselesai = resultSet.getString("tgl_sel");
+            String jumlahkaryawan = resultSet.getString("jumlah_karyawan");
+            String namakaryawan = resultSet.getString("nama karyawan");
+
+            model.addRow(new Object[]{namaproduksi, penanggungjawab, tanggalmulai, tanggalselesai, jumlahkaryawan, namakaryawan});
+        }
+
+    }catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error loading data from database: " + e.getMessage());
+    }
+    }
+ 
+    String generateNewID() {
+      String newID = "PD0000";
+
+        try (Connection connection = koneksi.koneksi.GetConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id_barang) FROM barang");
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                String lastID = resultSet.getString("MAX(id_barang)");
+                if (lastID != null) {
+                    try {
+                        int sequence = Integer.parseInt(lastID.replaceAll("\\D", "")) + 1;
+                        newID = String.format("PD%04d", sequence);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Error parsing ID: " + e.getMessage());
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error generating ID: " + e.getMessage());
+        }
+
+        return newID;
+    }
+    void reset() {
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +93,7 @@ public class DataSeluruhKaryawan extends javax.swing.JFrame {
         skaryawan = new javax.swing.JButton();
         qcheck = new javax.swing.JButton();
         bdashboard = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        labeledit = new javax.swing.JLabel();
         brp = new javax.swing.JButton();
         tbrang = new javax.swing.JButton();
 
@@ -106,7 +163,7 @@ public class DataSeluruhKaryawan extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Edit / Update Data");
+        labeledit.setText("Edit / Update Data");
 
         brp.setText("Buat Rencana Produksi");
         brp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,7 +189,7 @@ public class DataSeluruhKaryawan extends javax.swing.JFrame {
                             .addComponent(skaryawan)
                             .addComponent(sgudang)
                             .addComponent(bdashboard)
-                            .addComponent(jLabel5)
+                            .addComponent(labeledit)
                             .addComponent(brp)
                             .addComponent(tbrang)
                             .addComponent(tkaryawan)
@@ -154,7 +211,7 @@ public class DataSeluruhKaryawan extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bdashboard)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
+                        .addComponent(labeledit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(brp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -266,9 +323,9 @@ public class DataSeluruhKaryawan extends javax.swing.JFrame {
     private javax.swing.JButton brp;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel labeledit;
     private javax.swing.JButton qcheck;
     private javax.swing.JButton sgudang;
     private javax.swing.JButton skaryawan;
@@ -276,4 +333,8 @@ public class DataSeluruhKaryawan extends javax.swing.JFrame {
     private javax.swing.JButton tbrang;
     private javax.swing.JButton tkaryawan;
     // End of variables declaration//GEN-END:variables
+
+    private void setModel(DefaultTableModel model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

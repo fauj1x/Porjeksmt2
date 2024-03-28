@@ -35,7 +35,7 @@
                           <Component id="skaryawan" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="sgudang" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="bdashboard" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labeledit" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="brp" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="tbrang" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="tkaryawan" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -62,7 +62,7 @@
                   <Group type="102" attributes="0">
                       <Component id="bdashboard" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <Component id="labeledit" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="brp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -200,7 +200,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bdashboardActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="labeledit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Edit / Update Data"/>
       </Properties>
