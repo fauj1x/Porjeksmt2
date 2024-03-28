@@ -42,6 +42,7 @@ public class TambahBarang extends javax.swing.JFrame {
 
         return newID;
     }
+     
     void reset() {
         txtnamabarang.setText("");
         txtkategori.setSelectedIndex(0);
@@ -331,6 +332,10 @@ public class TambahBarang extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, "Data barang berhasil disimpan.");
         reset();
+        // Navigasi ke frame StokGudang
+        StokGudang.StokGudang stokGudangFrame = new StokGudang.StokGudang();
+        stokGudangFrame.setVisible(true);
+        dispose(); // Menutup frame TambahBarang
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, e);
     }

@@ -308,15 +308,14 @@ public class TambahKaryawan extends javax.swing.JFrame {
 
     private void tkaryawanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tkaryawanMouseClicked
         // TODO add your handling code here:
-        TambahBarang.TambahBarang a = new TambahBarang.TambahBarang();
-        a.setVisible(true);
-        dispose();
       
     }//GEN-LAST:event_tkaryawanMouseClicked
 
     private void tbrangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbrangMouseClicked
         // TODO add your handling code here:
-        
+        TambahBarang.TambahBarang a = new TambahBarang.TambahBarang();
+        a.setVisible(true);
+        dispose();
     }//GEN-LAST:event_tbrangMouseClicked
 
     private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
