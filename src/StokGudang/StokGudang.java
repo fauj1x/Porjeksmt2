@@ -418,7 +418,7 @@ public class StokGudang extends javax.swing.JFrame {
     }//GEN-LAST:event_bhapusActionPerformed
 
     private void bcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcariActionPerformed
-try{
+    try{
             Statement statement = (Statement)koneksi.koneksi.GetConnection().createStatement();
             ResultSet res = statement.executeQuery("select * from barang where "
                     + "nama_barang ='" + pencarian.getText() + "'");
