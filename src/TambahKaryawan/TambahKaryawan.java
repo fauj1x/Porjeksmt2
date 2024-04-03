@@ -339,6 +339,10 @@ public class TambahKaryawan extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, "Data karyawan berhasil disimpan.");
         reset();
+        // Navigasi ke frame StokGudang
+        DataSeluruhKaryawan.DataSeluruhKaryawan DataSeluruhKaryawanFrame = new DataSeluruhKaryawan.DataSeluruhKaryawan();
+        DataSeluruhKaryawanFrame.setVisible(true);
+        dispose(); // Menutup frame TambahBarang
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, e);
     }
