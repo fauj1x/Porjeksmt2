@@ -3,19 +3,81 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package SeluruhRiwayatProduksi;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Faujixx
  */
 public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
+public DefaultTableModel datable() {
+    DefaultTableModel model = new DefaultTableModel();
+    model.addColumn("nama produksi");
+    model.addColumn("penanggung jawab");
+    model.addColumn("tanggal mulai");
+    model.addColumn("tanggal selesai");
+    model.addColumn("jumlah karyawan");
+    model.addColumn("nama karyawan");
 
+    try (Connection connection = koneksi.koneksi.GetConnection();
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery("SELECT * FROM produksi")) {
+
+        while (resultSet.next()) {
+            String namaproduksi = resultSet.getString("nama_produksi");
+            String penanggungjawab = resultSet.getString("penanggung_jawab");
+            String tanggalmulai = resultSet.getString("tgl_mul");
+            String tanggalselesai = resultSet.getString("tgl_sel");
+            String jumlahkaryawan = resultSet.getString("jumlah_karyawan");
+            String namakaryawan = resultSet.getString("nama karyawan");
+
+            model.addRow(new Object[]{namaproduksi, penanggungjawab, tanggalmulai, tanggalselesai, jumlahkaryawan, namakaryawan});
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error loading data from database: " + e.getMessage());
+    }
+
+    return model;
+}
     /**
      * Creates new form SeluruhRiwayatProduksi
      */
     public SeluruhRiwayatProduksi() {
         initComponents();
+        DefaultTableModel model = datable();
+        jTable2.setModel(model);
     }
+
+    
+     public static String generateNewID() {
+      String newID = "PD0000";
+
+        try (Connection connection = koneksi.koneksi.GetConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT MAX(id_barang) FROM barang");
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                String lastID = resultSet.getString("MAX(id_barang)");
+                if (lastID != null) {
+                    try {
+                        int sequence = Integer.parseInt(lastID.replaceAll("\\D", "")) + 1;
+                        newID = String.format("PD%04d", sequence);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Error parsing ID: " + e.getMessage());
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error generating ID: " + e.getMessage());
+        }
+
+        return newID;
+    }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,8 +89,6 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
         tkaryawan = new javax.swing.JButton();
         srp = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -39,14 +99,16 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         brp = new javax.swing.JButton();
         tbrang = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("SELURUH RIWAYAT PRODUKSI");
-
-        jButton9.setText("Produksi Selesai");
-
-        jButton10.setText("Produksi Berjalan");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 50, -1, -1));
 
         tkaryawan.setText("Tambah Karyawan");
         tkaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -54,6 +116,12 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
                 tkaryawanMouseClicked(evt);
             }
         });
+        tkaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tkaryawanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tkaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 259, -1, -1));
 
         srp.setText("Seluruh Riwayat Produksi");
         srp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -61,8 +129,10 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
                 srpMouseClicked(evt);
             }
         });
+        getContentPane().add(srp, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 322, -1, -1));
 
         jLabel4.setText("Master Data");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 294, -1, -1));
 
         sgudang.setText("Stok Gudang");
         sgudang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -70,6 +140,7 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
                 sgudangMouseClicked(evt);
             }
         });
+        getContentPane().add(sgudang, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 357, -1, -1));
 
         skaryawan.setText("Seluruh Karyawan");
         skaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -77,6 +148,12 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
                 skaryawanMouseClicked(evt);
             }
         });
+        skaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                skaryawanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(skaryawan, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 392, -1, -1));
 
         qcheck.setText("Quality Check");
         qcheck.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,6 +161,7 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
                 qcheckMouseClicked(evt);
             }
         });
+        getContentPane().add(qcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 427, -1, -1));
 
         bdashboard.setText("Dashboard");
         bdashboard.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,8 +174,10 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
                 bdashboardActionPerformed(evt);
             }
         });
+        getContentPane().add(bdashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 126, -1, -1));
 
         jLabel5.setText("Edit / Update Data");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 161, -1, -1));
 
         brp.setText("Buat Rencana Produksi");
         brp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -105,67 +185,40 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
                 brpMouseClicked(evt);
             }
         });
+        getContentPane().add(brp, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 189, -1, -1));
 
         tbrang.setText("Tambah Barang");
+        getContentPane().add(tbrang, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 224, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(skaryawan)
-                    .addComponent(sgudang)
-                    .addComponent(bdashboard)
-                    .addComponent(jLabel5)
-                    .addComponent(brp)
-                    .addComponent(tbrang)
-                    .addComponent(tkaryawan)
-                    .addComponent(jLabel4)
-                    .addComponent(srp)
-                    .addComponent(qcheck))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(bdashboard)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(brp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tbrang)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tkaryawan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(srp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sgudang)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(skaryawan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(qcheck)))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, 201));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 100, -1, 201));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -222,6 +275,14 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_brpMouseClicked
 
+    private void tkaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tkaryawanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tkaryawanActionPerformed
+
+    private void skaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skaryawanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_skaryawanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -260,11 +321,13 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bdashboard;
     private javax.swing.JButton brp;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JButton qcheck;
     private javax.swing.JButton sgudang;
     private javax.swing.JButton skaryawan;
@@ -272,4 +335,6 @@ public class SeluruhRiwayatProduksi extends javax.swing.JFrame {
     private javax.swing.JButton tbrang;
     private javax.swing.JButton tkaryawan;
     // End of variables declaration//GEN-END:variables
+
+
 }
