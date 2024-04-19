@@ -54,8 +54,6 @@ public class TambahRencanaProduksi extends javax.swing.JFrame {
         btn_simpan = new javax.swing.JButton();
         btn_hps = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        tanggalselesai = new com.github.lgooddatepicker.components.DatePicker();
-        tanggalmulai = new com.github.lgooddatepicker.components.DatePicker();
         srp = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         sgudang = new javax.swing.JButton();
@@ -118,8 +116,6 @@ public class TambahRencanaProduksi extends javax.swing.JFrame {
 
         jLabel8.setText("Nama Produksi");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
-        getContentPane().add(tanggalselesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, -1, -1));
-        getContentPane().add(tanggalmulai, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, -1, -1));
 
         srp.setText("Seluruh Riwayat Produksi");
         srp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -338,8 +334,6 @@ String nama_kar = nama_karyawan.getSelectedItem().toString();
     private javax.swing.JButton sgudang;
     private javax.swing.JButton skaryawan;
     private javax.swing.JButton srp;
-    private com.github.lgooddatepicker.components.DatePicker tanggalmulai;
-    private com.github.lgooddatepicker.components.DatePicker tanggalselesai;
     private javax.swing.JButton tbrang;
     private javax.swing.JTextField terget_produksi;
     private javax.swing.JButton tkaryawan;

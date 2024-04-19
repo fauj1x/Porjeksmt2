@@ -4,6 +4,8 @@
  */
 package dashboard;
 
+import login.login;
+
 /**
  *
  * @author Faujixx
@@ -240,7 +242,13 @@ public class dashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dashboard().setVisible(true);
+                if (admin.UserAdmin.getName() == null) {
+                    login login = new login();
+                    login.setVisible(true);
+                    login.setExtendedState(login.MAXIMIZED_BOTH);
+                } else {
+                    new dashboard().setVisible(true);
+                }
             }
         });
     }
